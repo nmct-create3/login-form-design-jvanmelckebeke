@@ -2,11 +2,32 @@
 #FONTS
 \*------------------------------------*/
 
+@font-face {
+    font-family: 'Inter';
+    src: url("../fonts/Inter-Regular.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Inter;
+    src: url("../fonts/Inter-SemiBold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+}
+
 /*------------------------------------*\
 #Variables
 \*------------------------------------*/
 
-:root {}
+:root {
+    --background-color: #F5F6FA;
+    --text-color: #20223a;
+    --select-color: #3385FF;
+    --link-color: #3385FF;
+
+    accent-color: #3385ff;
+}
 
 /* CSS variables here */
 
@@ -23,12 +44,12 @@
 html {
     font-size: 16px;
     line-height: 1.5;
-    font-family: Helvetica, arial, sans-serif;
-    color: grey;
+    font-family: Inter, Helvetica, arial, sans-serif;
+    color: var(--text-color);
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: white;
+    background-color: var(--background-color);
 }
 
 *,
@@ -45,13 +66,13 @@ html {
 */
 
 ::-moz-selection {
-    background: HotPink;
+    background: var(--select-color);
     color: white;
     text-shadow: none;
 }
 
 ::selection {
-    background: HotPink;
+    background: var(--select-color);
     color: white;
     text-shadow: none;
 }
@@ -156,18 +177,29 @@ hr {
 }
 
 a {
-    color: HotPink;
+    color: var(--link-color);
     transition: all .1s ease-in-out;
 }
 
 a:visited,
 a:active {
-    color: HotPink;
+    filter: brightness(80%);
 }
 
 a:hover,
 a:focus {
-    color: DeepPink;
+    filter: brightness(130%);
+}
+
+label, input {
+    display: block;
+}
+
+input[type='checkbox'],
+input[type='checkbox'] + label,
+input[type='radio'],
+input[type='radio'] + label {
+    display: inline-block;
 }
 
 /*------------------------------------*\
@@ -187,6 +219,11 @@ a:focus {
 
 .o-row--login {
     /* stuff here to align the card */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
 }
 
 /* size modifiers */
@@ -239,20 +276,20 @@ a:focus {
     position: relative;
 }
 
-.o-section+.o-section {
+.o-section + .o-section {
     padding-top: 24px;
 }
 
 @media (min-width: 768px) {
 
-    .o-section--lg+.o-section--lg,
-    .o-section--xl+.o-section--xl {
+    .o-section--lg + .o-section--lg,
+    .o-section--xl + .o-section--xl {
         padding-top: 48px;
     }
 }
 
 @media (min-width: 992px) {
-    .o-section--xl+.o-section--xl {
+    .o-section--xl + .o-section--xl {
         padding-top: 72px;
     }
 }
@@ -282,7 +319,7 @@ a:focus {
     margin: 0 -12px;
 }
 
-.o-layout--gutter>.o-layout__item {
+.o-layout--gutter > .o-layout__item {
     padding: 0 12px;
 }
 
@@ -290,7 +327,7 @@ a:focus {
     margin: 0 -6px;
 }
 
-.o-layout--gutter-sm>.o-layout__item {
+.o-layout--gutter-sm > .o-layout__item {
     padding: 0 6px;
 }
 
@@ -298,7 +335,7 @@ a:focus {
     margin: 0 -24px;
 }
 
-.o-layout--gutter-lg>.o-layout__item {
+.o-layout--gutter-lg > .o-layout__item {
     padding: 0 24px;
 }
 
@@ -306,7 +343,7 @@ a:focus {
     margin: 0 -48px;
 }
 
-.o-layout--gutter-xl>.o-layout__item {
+.o-layout--gutter-xl > .o-layout__item {
     padding: 0 48px;
 }
 
@@ -431,6 +468,29 @@ a:focus {
     ---
     Website main logo
 */
+.c-logo {
+    height: 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.c-logo__symbol {
+    display: block;
+    height: 100%;
+}
+
+.c-logo__path--1 {
+    fill: #20223a;
+}
+
+.c-logo__path--2 {
+    fill: #3385FF;
+}
+
+.c-logo__path--3 {
+    fill: #1b4186;
+}
 
 /*
     Component: Card
@@ -438,11 +498,68 @@ a:focus {
     Card with box shadow
 */
 
+.c-card {
+    background: white;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+
+}
+
+.c-card__body {
+    padding: 1rem;
+}
+
+.c-card__title {
+    font-family: Inter, Helvetica, arial, sans-serif;
+    font-size: 18px;
+    color: #20223a;
+    padding-top: 3rem;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+}
+
+.c-card__footer {
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
+    /*width: fit-content;*/
+
+    padding: 1.5rem;
+    text-align: center;
+
+    line-height: 16px;
+    font-size: 14px;
+
+    border-top: 1px solid #e2e3e7;
+
+}
+
+.c-card__footer p {
+    margin-bottom: 0;
+}
+
+@media (min-width: 576px) {
+    .c-card__body {
+        padding: 3rem 3rem 2rem;
+    }
+}
+
 /*
     Component: Forms
     ---
     Everything form related here
 */
+
+.c-form-field {
+}
+
+.c-form-field--option {
+    /*display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 12px;*/
+}
 
 /*
     Component: Input
@@ -450,9 +567,29 @@ a:focus {
     Class to put on all input="text" like form inputs
 */
 
-.c-input {}
+.c-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
 
-.c-input:focus {}
+    border-width: 1px;
+    border-style: solid;
+    border-color: #e2e3e7;
+    border-right: 3px;
+    font-family: inherit;
+    color: inherit;
+
+    font-size: 16px;
+    line-height: 24px;
+    padding: 11px 16px;
+
+    outline: none;
+}
+
+.c-input:focus {
+    box-shadow: 0 0 0 3px #3385ff4d;
+}
 
 /*
     Component: Label
@@ -460,11 +597,22 @@ a:focus {
     Class to put on all form labels
 */
 
-.c-label {}
+.c-label {
+    font-size: 14px;
+    line-height: 16px;
+    margin-bottom: 8px;
+    color: #606274;
+}
+
+.c-label--option {
+    margin-bottom: 0;
+    margin-left: 8px;
+}
 
 /* If a input is focused within the form-field class change te color of the label */
 
-.c-form-field:focus-within .c-label {}
+.c-form-field:focus-within .c-label {
+}
 
 /*
     Component: Button
@@ -472,15 +620,40 @@ a:focus {
     Class to put on form buttons or links
 */
 
-.c-button {}
+.c-button {
+    width: 100%;
 
-.c-button:hover {}
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    line-height: 24px;
 
-.c-button:focus {}
+    color: white;
+    background: #3385ff;
 
-.c-button:active {}
+    padding: 14px 0 10px;
+    border: 1px solid #2e77e6;
+    border-radius: 2px;
 
-.c-button--block {}
+    outline: none;
+
+    transition: background 0.2s ease-in-out;
+}
+
+.c-button:hover {
+    background: #4f95ff;
+}
+
+.c-button:focus {
+    box-shadow: 0 0 0 3px rgba(51, 133, 255, 0.49411764705882355);
+    background: #3385ff;
+}
+
+.c-button:active {
+    background: #2e77e6;
+}
+
+.c-button--block {
+}
 
 /*------------------------------------*\
 #UTILITIES
@@ -493,7 +666,7 @@ a:focus {
 */
 
 .u-color-neutral-base {
-    color: Silver;
+    color: #808390;
 }
 
 .u-color-neutral-dark {
